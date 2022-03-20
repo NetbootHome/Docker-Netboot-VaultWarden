@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+
+  service:
+    build:
+      context: ./config/
+      dockerfile: dockerfile-service
+    volumes:
+      - /docker/data/netboot/vault/data:/data
+    networks:
+      webgateway: {}
+      default: {}
+    environment:
+      - DOMAIN=https://vault.netboot.fr
+      - ADMIN_TOKEN=${SVC_ADMIN_TOKEN}
+      - WEBSOCKET_ENABLED=true
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@db:5432/vault
+      - SIGNUPS_ALLOWED=false
+      - INVITATIONS_ALLOWED=true
+    labels:
+      # TRAEFIK CONFIG
+      - "traefik.enable=true"
+      - "traefik.docker.network=webgateway"
+      # ROUTER AND SERVICE DEFINITION
+      - "traefik.http.routers.vault.entryPoints=websecure"
+      - "traefik.http.routers.vault.tls=true"
+      - "traefik.http.routers.vault.service=vault"
+      - "traefik.http.routers.vault.rule=Host(`vault.netboot.fr`)"
+      - "traefik.http.routers.vault.tls.certresolver=letsencrypt"
+      - "traefik.http.services.vault.loadbalancer.server.port=80"
+      - "traefik.http.services.vault.loadbalancer.server.scheme=http"
+      # WEBSOCKET ROUTER AND SERVICE DEFINITION
+      - "traefik.http.routers.vault-websocket.entrypoints=websecure"
+      - "traefik.http.routers.vault-websocket.rule=Host(`vault.netboot.fr`) && Path(`/notifications/hub`)"
+      - "traefik.http.routers.vault-websocket.service=vault-websocket"
+      - "traefik.http.services.vault-websocket.loadbalancer.server.port=3012"
+      - "traefik.http.routers.vault-websocket.tls=true"
+      - "traefik.http.routers.vault-websocket.tls.certresolver=letsencrypt"
+      # HTTPS HEADERS
+      - "traefik.http.middlewares.vault.headers.SSLRedirect=true"
+      - "traefik.http.middlewares.vault.headers.STSSeconds=315360000"
+      - "traefik.http.middlewares.vault.headers.browserXSSFilter=true"
+      - "traefik.http.middlewares.vault.headers.contentTypeNosniff=true"
+      - "traefik.http.middlewares.vault.headers.forceSTSHeader=true"
+      - "traefik.http.middlewares.vault.headers.STSIncludeSubdomains=true"
+      - "traefik.http.middlewares.vault.headers.STSPreload=true"
+      - "traefik.http.middlewares.vault.headers.frameDeny=true"
+    restart: always
+
+  db:
+    build:
+      context: ./config/
+      dockerfile: dockerfile-db
+    networks:
+      default: {}
+    environment:
+      POSTGRES_DB: vault
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - /docker/data/netboot/vault/db:/var/lib/postgresql/data
+    restart: always
+
+networks:
+  webgateway:
+    external: true
