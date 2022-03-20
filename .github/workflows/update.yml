@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     # Define the execution on the self-hosted server.
-    runs-on: [self-hosted]
+    runs-on: [azure]
           
     # Define all the steps of the workflow
     steps:
