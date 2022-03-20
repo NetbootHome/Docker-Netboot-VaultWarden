@@ -1,0 +1,38 @@
+name: Update
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.gitignore'
+      - '**/*.gitattributes'
+      
+jobs:
+  build:
+    # Define the execution on the self-hosted server.
+    runs-on: [self-hosted]
+          
+    # Define all the steps of the workflow
+    steps:
+      # Checking out the repository
+      - name: Checking out the repository
+        uses: actions/checkout@v2
+
+        # Setup environment variables
+      - name: Setup environment variables
+        env:
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+        run: |
+          touch .env
+          echo DB_USERNAME=${{ secrets.DB_USERNAME }} >> .env
+          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
+        
+      # Stop Containers
+      - name: Stop Containers
+        run: "sudo /usr/local/bin/docker-compose -p vault stop"
+        
+      # Start Containers
+      - name: Start Containers
+        run: "sudo /usr/local/bin/docker-compose -p vault up -d --build"
