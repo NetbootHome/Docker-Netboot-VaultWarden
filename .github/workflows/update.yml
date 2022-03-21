@@ -17,7 +17,7 @@ jobs:
     steps:
       # Checking out the repository
       - name: Checking out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
         # Setup environment variables
       - name: Setup environment variables
