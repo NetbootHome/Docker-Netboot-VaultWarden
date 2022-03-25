@@ -1,4 +1,4 @@
-name: Build Infrastructure
+name: Build
 on:
   push:
     branches: [main]
