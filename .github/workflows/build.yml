@@ -1,5 +1,4 @@
-name: Update Infrastructure
-
+name: Build Infrastructure
 on:
   push:
     branches: [main]
@@ -7,19 +6,12 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
-      
 jobs:
   build:
-    # Define the execution on the self-hosted server.
     runs-on: [azure]
-          
-    # Define all the steps of the workflow
     steps:
-      # Checking out the repository
       - name: Checking out the repository
         uses: actions/checkout@v3
-
-        # Setup environment variables
       - name: Setup environment variables
         env:
           DB_USERNAME: ${{secrets.DB_USERNAME}}
@@ -28,11 +20,7 @@ jobs:
           touch .env
           echo DB_USERNAME='${{ secrets.DB_USERNAME }}' >> .env
           echo DB_PASSWORD='${{ secrets.DB_PASSWORD }}' >> .env
-        
-      # Stop Containers
       - name: Stop Containers
         run: "sudo /usr/local/bin/docker-compose -p vault stop"
-        
-      # Start Containers
       - name: Start Containers
         run: "sudo /usr/local/bin/docker-compose -p vault up -d --build"
