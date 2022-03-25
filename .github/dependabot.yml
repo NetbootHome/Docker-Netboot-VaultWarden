@@ -5,14 +5,23 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    labels: [ ]
+    reviewers:
+      - "thomas-illiet"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    labels: [ ]
+    reviewers:
+      - "thomas-illiet"
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/config/dockerfile-service"
     schedule:
       interval: "daily"
-    labels: [ ]
+    reviewers:
+      - "thomas-illiet"
+  - package-ecosystem: "docker"
+    directory: "/config/dockerfile-db"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "thomas-illiet"
