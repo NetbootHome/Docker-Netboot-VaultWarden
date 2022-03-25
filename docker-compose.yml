@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   service:
-    build: ./docker/service
+    build: docker/service
     volumes:
       - /docker/data/netboot/vault/data:/data
     networks:
@@ -47,7 +47,7 @@ services:
     restart: always
 
   db:
-    build: ./docker/db
+    build: docker/db
     networks:
       default: {}
     environment:
