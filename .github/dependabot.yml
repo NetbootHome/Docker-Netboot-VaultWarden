@@ -14,13 +14,13 @@ updates:
     reviewers:
       - "thomas-illiet"
   - package-ecosystem: "docker"
-    directory: "/config/dockerfile-service"
+    directory: "/docker/db"
     schedule:
       interval: "daily"
     reviewers:
       - "thomas-illiet"
   - package-ecosystem: "docker"
-    directory: "/config/dockerfile-db"
+    directory: "/docker/service"
     schedule:
       interval: "daily"
     reviewers:
