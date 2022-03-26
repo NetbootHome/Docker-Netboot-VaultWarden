@@ -6,6 +6,8 @@ on:
       - '**/*.md'
       - '**/*.gitignore'
       - '**/*.gitattributes'
+  schedule:
+    - cron: '0 5 * * *'
 jobs:
   build:
     runs-on: [azure]
