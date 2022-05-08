@@ -2,6 +2,15 @@
 
 VaultWarden implementation for my personal infrastructure.
 
+## Backup
+
+This product is backup by [Duplicati](https://github.com/NetbootHome/Docker-Netboot-Backup) daily with following configuration:
+
+* **Destination Type:** Microsoft OneDrive
+* **Destination Folder**: `/Backups/Netboot/VaultWarden`
+* **Schedule:** Every days at 3AM
+* **Retention:** Smart backup retention
+
 ## Please show the value
 
 Choosing a project dependency could be difficult. We need to ensure stability and maintainability of our projects.
