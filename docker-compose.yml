@@ -11,7 +11,7 @@ services:
       default: {}
     environment:
       - DOMAIN=https://vault.netboot.fr
-      - ADMIN_TOKEN=${SVC_ADMIN_TOKEN}
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
       - WEBSOCKET_ENABLED=true
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@netboot_db:5432/vault
       - SIGNUPS_ALLOWED=false
