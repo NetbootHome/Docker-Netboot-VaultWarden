@@ -1,6 +1,14 @@
 # Netboot - VaultWarden [![Build](https://github.com/NetbootCommunity/Netboot-VaultWarden/actions/workflows/build.yml/badge.svg)](https://github.com/NetbootCommunity/Netboot-VaultWarden/actions/workflows/build.yml)
 
-VaultWarden implementation for my personal infrastructure.
+> VaultWarden implementation for my personal infrastructure.
+
+The solution ? Vaultwarden, which is a clients-server based password manager. But to understand why it's really interesting, we also need to talk a bit about Bitwarden.
+
+Bitwarden is a passwords manager that is based on a clients-server infrastructure, and there is a lot of clients (web, windows, macos, linux, browser integration, android, appstore and even some cli tools). There is a strong ecosystem around bitwarden which is the very cool part. Also it's opensource 🥳.
+
+You can also host your own server, but it is resources expensive. But another server implementation was made, far more less demanding. This was originally called Bitwarden_RS and is now called Vaultwarden, and the official bitwarden clients are compatible with the vaultwarden server.
+
+Let's finally go technical !
 
 ## Backup
 
