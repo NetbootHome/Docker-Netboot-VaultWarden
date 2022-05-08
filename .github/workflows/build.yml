@@ -18,10 +18,12 @@ jobs:
         env:
           DB_USERNAME: ${{secrets.DB_USERNAME}}
           DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          ADMIN_TOKEN: ${{secrets.ADMIN_TOKEN}}
         run: |
           touch .env
           echo DB_USERNAME='${{ secrets.DB_USERNAME }}' >> .env
           echo DB_PASSWORD='${{ secrets.DB_PASSWORD }}' >> .env
+          echo ADMIN_TOKEN='${{ secrets.ADMIN_TOKEN }}' >> .env
       - name: Stop Containers
         run: "sudo /usr/local/bin/docker-compose -p vault stop"
       - name: Start Containers
