@@ -4,6 +4,8 @@ services:
 
   netboot_service:
     build: docker/service
+    volumes:
+      - /docker/data/netboot/vault/data:/data
     networks:
       webgateway: {}
       default: {}
