@@ -4,15 +4,10 @@ services:
 
   netboot_service:
     build: docker/service
-    volumes:
-      - /docker/data/netboot/vault/cache:/icon_cache
-      - /docker/data/netboot/vault/attachments:/attachments
     networks:
       webgateway: {}
       default: {}
     environment:
-      - ICON_CACHE_FOLDER=/icon_cache
-      - ATTACHMENTS_FOLDER=/attachments
       - DOMAIN=https://vault.netboot.fr
       - ADMIN_TOKEN=${ADMIN_TOKEN}
       - WEBSOCKET_ENABLED=true
