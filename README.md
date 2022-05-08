@@ -11,6 +11,12 @@ This product is backup by [Duplicati](https://github.com/NetbootHome/Docker-Netb
 * **Schedule:** Every days at 3AM
 * **Retention:** Smart backup retention
 
+## Client Configuration
+
+To use my instance, please customize the server uri following the address: <https://vault.netboot.fr>
+
+![setup](assets/setup.png)
+
 ## Please show the value
 
 Choosing a project dependency could be difficult. We need to ensure stability and maintainability of our projects.
