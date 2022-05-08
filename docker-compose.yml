@@ -4,8 +4,6 @@ services:
 
   netboot_service:
     build: docker/service
-    volumes:
-      - /docker/data/netboot/vault/data:/data
     networks:
       webgateway: {}
       default: {}
@@ -17,6 +15,7 @@ services:
       - SIGNUPS_ALLOWED=false
       - INVITATIONS_ALLOWED=true
       - EMERGENCY_ACCESS_ALLOWED=true
+      - TZ=Europe/Paris
     labels:
       # TRAEFIK CONFIG
       - "traefik.enable=true"
