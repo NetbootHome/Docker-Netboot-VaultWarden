@@ -16,6 +16,7 @@ services:
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@netboot_db:5432/vault
       - SIGNUPS_ALLOWED=false
       - INVITATIONS_ALLOWED=true
+      - EMERGENCY_ACCESS_ALLOWED=true
     labels:
       # TRAEFIK CONFIG
       - "traefik.enable=true"
