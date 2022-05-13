@@ -18,6 +18,9 @@ services:
       - INVITATIONS_ALLOWED=true
       - EMERGENCY_ACCESS_ALLOWED=true
       - TZ=Europe/Paris
+    depends_on:
+      netboot_db:
+        condition: service_healthy
     labels:
       # TRAEFIK CONFIG
       - "traefik.enable=true"
@@ -46,6 +49,11 @@ services:
       - "traefik.http.middlewares.vault.headers.STSIncludeSubdomains=true"
       - "traefik.http.middlewares.vault.headers.STSPreload=true"
       - "traefik.http.middlewares.vault.headers.frameDeny=true"
+    healthcheck:
+      test: ["CMD", "curl", "-kILs", "--fail", "http://localhost:80"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: always
 
   netboot_db:
@@ -58,6 +66,11 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - /docker/data/netboot/vault/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: always
 
 networks:
