@@ -5,31 +5,15 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    reviewers:
-      - "thomas-illiet"
-    labels:
-      - "nuget dependencies"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    reviewers:
-      - "thomas-illiet"
-    labels:
-      - "github dependencies"
   - package-ecosystem: "docker"
     directory: "/docker/db"
     schedule:
       interval: "daily"
-    reviewers:
-      - "thomas-illiet"
-    labels:
-      - "docker dependencies"
   - package-ecosystem: "docker"
     directory: "/docker/service"
     schedule:
       interval: "daily"
-    reviewers:
-      - "thomas-illiet"
-    labels:
-      - "docker dependencies"
