@@ -1,19 +1,20 @@
 # https://docs.github.com/en/code-security/supply-chain-security/configuration-options-for-dependency-updates
+
 version: 2
 updates:
-  - package-ecosystem: "nuget"
-    directory: "/"
-    schedule:
-      interval: "daily"
+
+  # Maintain dependencies for GitHub Actions 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+      
+  # Maintain dependencies for docker services
   - package-ecosystem: "docker"
-    directory: "/docker/db"
+    directory: "/docker/service"
     schedule:
       interval: "daily"
   - package-ecosystem: "docker"
-    directory: "/docker/service"
+    directory: "/docker/db"
     schedule:
       interval: "daily"
