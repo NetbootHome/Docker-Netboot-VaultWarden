@@ -1,1 +1,1 @@
-FROM vaultwarden/server:1.24.0-alpine
+FROM vaultwarden/server:1.25.0-alpine
