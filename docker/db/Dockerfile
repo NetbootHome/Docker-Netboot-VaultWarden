@@ -1,1 +1,1 @@
-FROM postgres:14.3-alpine
+FROM postgres:14.4-alpine
