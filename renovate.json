@@ -1,0 +1,13 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [ "config:base" ],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "assignees": [
+    "thomas-illiet",
+  ],
+  "dependencyDashboard": false,
+  "labels": ["dependencies"]
+}
